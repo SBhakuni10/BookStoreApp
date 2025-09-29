@@ -1,5 +1,5 @@
 import express from "express";
-import Book from "../models/book.model.js"; // make sure path is correct
+import Book from "../models/book.model.js"; 
 import { getBook } from "../controller/book.controller.js";
 
 const router = express.Router();

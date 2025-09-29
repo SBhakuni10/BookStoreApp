@@ -45,7 +45,7 @@ export const sendFreeBookEmail = async (to, book) => {
         <p>Happy Reading! 📚</p>
       `,
     });
-    console.log("✅ Free book email sent to", to);
+    console.log(" Free book email sent to", to);
     return true;
   } catch (err) {
     console.error(" Free book email send error:", err.message);

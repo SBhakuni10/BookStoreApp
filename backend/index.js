@@ -3,7 +3,7 @@ dotenv.config();
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import bookRoute from "./route/book.route.js";   // ✅ ensure correct folder name
+import bookRoute from "./route/book.route.js";   
 import userRoute from "./route/user.route.js";
 import paymentRoute from "./route/payment.js";
 
@@ -11,7 +11,7 @@ import paymentRoute from "./route/payment.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const URI = process.env.MONGODB_URI; // ✅ match with .env key
+const URI = process.env.MONGODB_URI; 
 
 // Middleware
 app.use(cors());
@@ -29,11 +29,11 @@ app.use("/user", userRoute);
 mongoose
   .connect(URI)
   .then(() => {
-    console.log("✅ Connected to MongoDB");
+    console.log(" Connected to MongoDB");
     app.listen(PORT, () =>
       console.log(`🚀 Server running on http://localhost:${PORT}`)
     );
   })
   .catch((err) => {
-    console.error("❌ MongoDB connection error:", err.message);
+    console.error(" MongoDB connection error:", err.message);
   });

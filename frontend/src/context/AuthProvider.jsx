@@ -8,7 +8,7 @@ export default function AuthProvider({ children }) {
     initialAuthUser ? JSON.parse(initialAuthUser) : null
   );
 
-  // Sync localStorage whenever authUser changes
+
   useEffect(() => {
     if (authUser) {
       localStorage.setItem('Users', JSON.stringify(authUser));

@@ -36,21 +36,19 @@ router.post("/create-order", async (req, res) => {
         status: "paid",
       });
 
-      // 1️⃣ Send confirmation email immediately
+      
       await sendConfirmationEmail(userEmail, freeOrder);
 
-      // 2️⃣ Send free book access after 10 seconds
       setTimeout(async () => {
         await sendFreeBookEmail(userEmail, {
           ...book,
           downloadUrl: book.downloadUrl || "https://example.com/free-book.pdf",
         });
-      }, 10000); // 10 seconds
+      }, 10000); 
 
       return res.status(200).json({ success: true, message: "Free book order created", order: freeOrder });
     }
 
-    // Paid book → create Razorpay order
     const amountInPaise = Math.round(Number(book.price) * 100);
 
     const razorpayOrder = await razorpay.orders.create({
@@ -74,7 +72,7 @@ router.post("/create-order", async (req, res) => {
   }
 });
 
-// ------------------- VERIFY PAYMENT -------------------
+
 router.post("/verify-payment", async (req, res) => {
   try {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } = req.body;
@@ -106,19 +104,19 @@ router.post("/verify-payment", async (req, res) => {
       return res.status(404).json({ success: false, message: "Order not found" });
     }
 
-    // 1️⃣ Send confirmation email immediately
+  
     if (status === "paid") {
       await sendConfirmationEmail(updatedOrder.userEmail, updatedOrder);
     }
 
-    // 2️⃣ Send free book access after 10 seconds (if the book is free)
+    
     if (Number(updatedOrder.amount) === 0) {
       setTimeout(async () => {
         await sendFreeBookEmail(updatedOrder.userEmail, {
           ...updatedOrder.book,
           downloadUrl: updatedOrder.book.downloadUrl || "https://example.com/free-book.pdf",
         });
-      }, 10000); // 10 seconds
+      }, 10000); 
     }
 
     res.json({ success: true, message: "Payment verified", order: updatedOrder });
