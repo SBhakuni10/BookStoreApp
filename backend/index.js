@@ -9,7 +9,6 @@ import paymentRoute from "./route/payment.js";
 
 
 
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 const URI = process.env.MONGODB_URI; // ✅ match with .env key

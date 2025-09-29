@@ -116,7 +116,7 @@ function SignUp() {
               Sign Up
             </button>
 
-            {/* ✅ FIXED HERE */}
+           
             <div className="text-gray-500 dark:text-gray-300 text-xl">
               Already have an account?{' '}
               <button

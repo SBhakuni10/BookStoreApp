@@ -1,16 +1,17 @@
 import nodemailer from "nodemailer";
 
-// Send order confirmation email
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
+
 export const sendConfirmationEmail = async (to, order) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // use app password
-      },
-    });
-
+   
     await transporter.sendMail({
       from: `"Book Store" <${process.env.EMAIL_USER}>`,
       to,
@@ -23,7 +24,7 @@ export const sendConfirmationEmail = async (to, order) => {
         <p>We’ll send your book or provide download access shortly.</p>
       `,
     });
-
+    console.log("✅ Confirmation email sent to", to);
     return true;
   } catch (err) {
     console.error("❌ Email send error:", err.message);
@@ -31,17 +32,8 @@ export const sendConfirmationEmail = async (to, order) => {
   }
 };
 
-// Send free book download/access email
 export const sendFreeBookEmail = async (to, book) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
     await transporter.sendMail({
       from: `"Book Store" <${process.env.EMAIL_USER}>`,
       to,
@@ -53,10 +45,10 @@ export const sendFreeBookEmail = async (to, book) => {
         <p>Happy Reading! 📚</p>
       `,
     });
-
+    console.log("✅ Free book email sent to", to);
     return true;
   } catch (err) {
-    console.error("❌ Free book email send error:", err.message);
+    console.error(" Free book email send error:", err.message);
     return false;
   }
 };
