@@ -8,7 +8,7 @@ import { sendConfirmationEmail, sendFreeBookEmail } from "../utils/mailer.js";
 
 const router = express.Router();
 
-// ------------------- CREATE ORDER -------------------
+
 router.post("/create-order", async (req, res) => {
   try {
     const { book, userEmail } = req.body;
@@ -46,7 +46,7 @@ router.post("/create-order", async (req, res) => {
         });
       }, 10000); 
 
-      return res.status(200).json({ success: true, message: "Free book order created", order: freeOrder });
+      return res.status(200).json({ success: true, message: "Free book ordered", order: freeOrder });
     }
 
     const amountInPaise = Math.round(Number(book.price) * 100);

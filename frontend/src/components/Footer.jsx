@@ -11,8 +11,8 @@ function Footer() {
         <nav className="grid grid-flow-col gap-4">
           <Link to="/about" className="link link-hover hover:text-pink-500 transition">About us</Link>
           <Link to="/contact" className="link link-hover hover:text-pink-500 transition">Contact</Link>
-          <Link to="/jobs" className="link link-hover hover:text-pink-500 transition">Jobs</Link>
-          <Link to="/press-kit" className="link link-hover hover:text-pink-500 transition">Press kit</Link>
+          <Link to="/courses" className="link link-hover hover:text-pink-500 transition">Courses</Link>
+         
         </nav>
 
         {/* Social Media Icons */}

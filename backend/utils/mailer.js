@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import nodemailer from "nodemailer";
 
 
@@ -21,7 +23,7 @@ export const sendConfirmationEmail = async (to, order) => {
         <p>Your order for <strong>${order.book.name}</strong> has been confirmed.</p>
         <p><b>Price:</b> ₹${order.amount}</p>
         <p><b>Status:</b> ${order.status}</p>
-        <p>We’ll send your book or provide download access shortly.</p>
+        <p>We’ll send your book in 2 days.</p>
       `,
     });
     console.log("✅ Confirmation email sent to", to);

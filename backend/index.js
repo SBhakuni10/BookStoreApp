@@ -6,7 +6,8 @@ import cors from "cors";
 import bookRoute from "./route/book.route.js";   
 import userRoute from "./route/user.route.js";
 import paymentRoute from "./route/payment.js";
-
+import adminRoute from "./route/admin.route.js";
+import contactRoutes from "./route/contact.route.js";
 
 
 const app = express();
@@ -24,6 +25,9 @@ app.use(express.json());
 app.use("/books", bookRoute);
 app.use("/payment", paymentRoute);
 app.use("/user", userRoute);
+app.use("/api/admin", adminRoute);
+app.use("/api/contact", contactRoutes);
+
 
 // MongoDB connection
 mongoose
